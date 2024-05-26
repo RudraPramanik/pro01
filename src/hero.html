@@ -1,20 +1,60 @@
-<div class="relative bg-cover bg-center h-[600px]" style="background-image: url('/src/assets/hero-slider.jpg');">
-    <div class="absolute top-0 right-0 opacity-50 ">
-        <img src="/src/assets/hero-shape-1.png" alt="Hero Shape" class="h-[600px] w-auto" />
-    </div>
-    <div class="absolute top-0 right-0 ">
-        <img src="/src/assets/hero-shape-2.png" alt="Hero Shape" class="h-[600px] w-auto" />
-    </div>
-    <div class="absolute top-0 right-0 opacity-90 ">
-        <img src="/src/assets/hero-shape-3.png" alt="Hero Shape" class="h-[600px] w-auto" />
-    </div>
+<div
+  class="relative bg-cover bg-center h-[600px]"
+  style="background-image: url('/src/assets/hero-slider.jpg')"
+>
+  <div class="hidden sm:block absolute top-0 right-0 opacity-50">
+    <img
+      src="/src/assets/hero-shape-1.png"
+      alt="Hero Shape"
+      class="h-[600px] w-auto"
+    />
+  </div>
+  <div class="absolute hidden sm:block top-0 right-0">
+    <img
+      src="/src/assets/hero-shape-2.png"
+      alt="Hero Shape"
+      class="h-[600px] w-auto"
+    />
+  </div>
+  <div class="absolute top-0 right-0 hidden sm:block opacity-90">
+    <img
+      src="/src/assets/hero-shape-3.png"
+      alt="Hero Shape"
+      class="h-[600px] w-auto"
+    />
+  </div>
+  <div class="absolute top-0 left-0 opacity-90 hidden sm:block">
+    <img
+      src="/src/assets/hero-line.png"
+      alt="Hero Shape"
+      class="h-[166px] w-auto"
+    />
+  </div>
 
-    <div class="absolute inset-0 bg-[#24193a] opacity-40 "></div>
-    
-    <div class="relative flex items-center justify-center h-full text-center text-white">
-        <div>
-            <h1 class="text-4xl font-bold mb-4">Welcome to Our Website</h1>
-            <p class="text-xl">This is a beautiful banner with a background image and a purple overlay.</p>
-        </div>
+  <div class="absolute inset-0 bg-[#24193a] opacity-70"></div>
+
+  <div
+    class="relative flex items-center justify-center h-full text-center text-white"
+  >
+    <div class="flex flex-row items-center space-x-8">
+      <div
+        class="sm:flex flex-col hidden space-y-2 text-lightPurple font-semibold"
+      >
+        <span>Y</span><span>G</span> <span>O</span> <span>L</span> <span>O</span
+        ><span>N</span><span>H</span><span>H</span><span>C</span><span>E</span
+        ><span>T</span>
+      </div>
+      <div class="flex flex-col justify-start items-start space-y-4">
+        <p class="text-grayLight text-sm">Welcome to best IT solution</p>
+        <h1 class="text-6xl font-bold text-grayLight mb-4">
+          Provide IT Solution & Services
+        </h1>
+        <button
+          class="text-gray-100 font-medium text-lg bg-primary rounded-sm px-12 py-4"
+        >
+          LEARN MORE
+        </button>
+      </div>
     </div>
+  </div>
 </div>

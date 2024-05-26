@@ -1,264 +1,899 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Simple Slider</title>
-    <link rel="stylesheet" href="./main.css">
+    <link rel="stylesheet" href="./main.css" />
     <style>
-        .slider {
-            overflow: hidden;
-            width: 80%;
-            position: relative;
-            margin: 0 auto;
-        }
-        .slider-container {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-        .slide {
-            flex: 1 0 25%; /* Each slide takes up 1/3rd of the container */
-            box-sizing: border-box;
-            padding: 2rem;
-            margin: 8px;
-        }
+      .slider {
+        overflow: hidden;
+        width: 80%;
+        position: relative;
+        margin: 0 auto;
+      }
+      .slider-container {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+      }
+      .slide {
+        flex: 1 0 25%; /* Each slide takes up 1/3rd of the container */
+        box-sizing: border-box;
+        padding: 0rem;
+        margin: 8px;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <main class="">
-        <!-- header -->
-        <header class="w-full">
-            <div class="flex flex-row justify-between"></div>
-            <!-- Top Bar -->
-            <div class="bg-[#170c23] text-[#f6f3fb] py-2">
-              <div class="container mx-auto flex justify-between items-center px-6">
-                <div class="text-xs">Welcome to IT solution service</div>
-                <div class="flex text-xs space-x-4">
-                  <div class="flex items-center">
-                    <span>olutioncloudly.io</span>
-                    <span>|</span>
-                    <span>house#249(2ndfloor),road#30,Mohakhali DOHS</span>
-                  </div>
-          
-                  <div class="flex flex-row items-center space-x-1">
-                    <div
-                      style="background-color: #170c23; padding: 5px; border-radius: 50%"
+      <!-- header -->
+      <!-- header -->
+      <header class="w-full hidden sm:block ">
+        <div class="flex flex-row justify-between"></div>
+        <!-- Top Bar -->
+        <div class="bg-[#170c23] text-[#f6f3fb] py-2">
+          <div class="container mx-auto flex justify-between items-center px-6">
+            <div class="text-xs">Welcome to IT solution service</div>
+            <div class="flex text-xs space-x-4">
+              <div class="flex items-center space-x-2 ">
+                <div class="flex flex-row items-center space-x-2">
+                  <p>
+                    <svg
+                      class="w-4 h-4"
+                      width="18"
+                      height="18"
+                      viewBox="0 0 18 18"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-5 w-5"
-                        viewBox="0 0 24 24"
-                        fill="white"
-                      >
-                        <path
-                          d="M22.675 0h-21.35C.6 0 0 .6 0 1.343v21.314C0 23.4.6 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.656-4.788 1.325 0 2.464.1 2.795.144v3.24l-1.918.001c-1.504 0-1.794.714-1.794 1.76v2.31h3.586l-.467 3.622h-3.119V24h6.116c.725 0 1.325-.6 1.325-1.343V1.343C24 .6 23.4 0 22.675 0z"
-                        />
-                      </svg>
-                    </div>
-          
-                    <span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-5 w-5"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                      >
-                        <path
-                          d="M19.633 7.997c.014.187.014.373.014.56 0 5.73-4.358 12.33-12.323 12.33-2.44 0-4.707-.717-6.613-1.95.338.04.68.054 1.027.054 2.028 0 3.895-.692 5.38-1.855-1.894-.034-3.495-1.287-4.044-3.008.265.048.53.075.8.075.39 0 .77-.053 1.134-.147-1.976-.397-3.46-2.144-3.46-4.238v-.054c.58.324 1.25.515 1.958.537-1.16-.772-1.928-2.09-1.928-3.586 0-.787.21-1.525.574-2.164 2.098 2.573 5.23 4.267 8.755 4.448-.07-.314-.104-.643-.104-.98 0-2.365 1.916-4.29 4.286-4.29 1.234 0 2.35.52 3.13 1.355.976-.192 1.888-.55 2.716-1.044-.32 1.002-.99 1.836-1.866 2.364.868-.1 1.697-.334 2.468-.674-.576.862-1.3 1.617-2.142 2.22z"
-                        />
-                      </svg>
-                    </span>
-                    <div
-                      style="background-color: #170c23; padding: 5px; border-radius: 20%"
+                      <path
+                        d="M1.6875 2.5H16.3125C17.2266 2.5 18 3.27344 18 4.1875C18 4.75 17.7188 5.24219 17.2969 5.55859L9.66797 11.2891C9.24609 11.6055 8.71875 11.6055 8.29688 11.2891L0.667969 5.55859C0.246094 5.24219 0 4.75 0 4.1875C0 3.27344 0.738281 2.5 1.6875 2.5ZM0 6.4375L7.62891 12.2031C8.4375 12.8008 9.52734 12.8008 10.3359 12.2031L18 6.4375V13.75C18 15.0156 16.9805 16 15.75 16H2.25C0.984375 16 0 15.0156 0 13.75V6.4375Z"
+                        fill="#a855f7"
+                      />
+                    </svg>
+                  </p>
+                  <p>olutioncloudly.io</p>
+                </div>
+                <div class="flex flex-row items-center space-x-1 ">
+                  <p>
+                    <svg
+                      class="w-4 h-4 text-purple-500 dark:text-white"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-5 w-5"
-                        viewBox="0 0 24 24"
-                        fill="white"
-                      >
-                        <path
-                          d="M7.001 2c-1.054 0-1.96.057-2.636.171-.678.114-1.288.263-1.856.527-.56.264-1.057.618-1.536 1.096-.478.479-.832.977-1.096 1.536-.264.568-.413 1.178-.527 1.856C.057 8.04 0 8.946 0 10v4c0 1.054.057 1.96.171 2.636.114.678.263 1.288.527 1.856.264.56.618 1.057 1.096 1.536.479.478.977.832 1.536 1.096.568.264 1.178.413 1.856.527.676.114 1.582.171 2.636.171h4c1.054 0 1.96-.057 2.636-.171.678-.114 1.288-.263 1.856-.527.56-.264 1.057-.618 1.536-1.096.478-.479.832-.977 1.096-1.536.264-.568.413-1.178.527-1.856.114-.676.171-1.582.171-2.636v-4c0-1.054-.057-1.96-.171-2.636-.114-.678-.263-1.288-.527-1.856-.264-.56-.618-1.057-1.096-1.536-.479-.478-.977-.832-1.536-1.096-.568-.264-1.178-.413-1.856-.527C15.96 2.057 15.054 2 14 2h-4zm-1 1.644h6c1.006 0 1.756.027 2.365.071.615.045 1.059.129 1.465.305.377.16.708.38 1.063.735.356.355.575.686.735 1.063.176.406.26.85.305 1.465.044.609.071 1.359.071 2.365v6c0 1.006-.027 1.756-.071 2.365-.045.615-.129 1.059-.305 1.465-.16.377-.38.708-.735 1.063-.355.356-.686.575-1.063.735-.406.176-.85.26-1.465.305-.609.044-1.359.071-2.365.071h-6c-1.006 0-1.756-.027-2.365-.071-.615-.045-1.059-.129-1.465-.305-.377-.16-.708-.38-1.063-.735-.356-.355-.575-.686-.735-1.063-.176-.406-.26-.85-.305-1.465-.044-.609-.071-1.359-.071-2.365v-6c0-1.006.027-1.756.071-2.365.045-.615.129-1.059.305-1.465.16-.377.38-.708.735-1.063.355-.356.686-.575 1.063-.735.406-.176.85-.26 1.465-.305.609-.044 1.359-.071 2.365-.071zm5 3.518a2.172 2.172 0 11-4.345 0 2.172 2.172 0 014.345 0zm-1 0a1.172 1.172 0 11-2.344 0 1.172 1.172 0 012.344 0zm-5.5 2.5c-1.205 0-2.188.983-2.188 2.188 0 1.205.983 2.188 2.188 2.188s2.188-.983 2.188-2.188c0-1.205-.983-2.188-2.188-2.188zm0 1c.654 0 1.188.533 1.188 1.188 0 .654-.533 1.188-1.188 1.188-.654 0-1.188-.533-1.188-1.188 0-.654.533-1.188 1.188-1.188zM8.075 6.5h4.344v2.5H8.075z"
-                        />
-                      </svg>
-                    </div>
-          
-                    <span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-5 w-5"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                      >
-                        <path
-                          d="M12 0C5.37 0 0 5.37 0 12c0 4.99 3.657 9.132 8.438 10.065-.117-.856-.22-2.17.046-3.104.237-.916 1.529-5.843 1.529-5.843s-.391-.783-.391-1.939c0-1.818 1.054-3.18 2.364-3.18 1.112 0 1.648.837 1.648 1.841 0 1.122-.714 2.792-1.084 4.338-.308 1.297.654 2.355 1.939 2.355 2.327 0 3.879-3.062 3.879-6.682 0-2.754-1.85-4.825-5.238-4.825-3.812 0-6.18 2.861-6.18 6.066 0 1.105.325 1.887.834 2.493.234.279.269.39.184.708-.062.244-.204.837-.266 1.07-.087.32-.354.433-.654.315C7.472 15.789 6.77 14.12 6.77 12.501c0-3.794 2.79-7.28 8.072-7.28 4.24 0 7.548 3.03 7.548 7.08 0 4.205-2.648 7.586-6.322 7.586-1.233 0-2.394-.637-2.79-1.39 0 0-.67 2.553-.834 3.152-.274 1.035-.801 2.072-1.291 2.857C9.573 23.265 10.765 24 12 24c6.63 0 12-5.37 12-12S18.63 0 12 0z"
-                        />
-                      </svg>
-                    </span>
-                  </div>
+                      <path
+                        fill-rule="evenodd"
+                        d="M11.906 1.994a8.002 8.002 0 0 1 8.09 8.421 7.996 7.996 0 0 1-1.297 3.957.996.996 0 0 1-.133.204l-.108.129c-.178.243-.37.477-.573.699l-5.112 6.224a1 1 0 0 1-1.545 0L5.982 15.26l-.002-.002a18.146 18.146 0 0 1-.309-.38l-.133-.163a.999.999 0 0 1-.13-.202 7.995 7.995 0 0 1 6.498-12.518ZM15 9.997a3 3 0 1 1-5.999 0 3 3 0 0 1 5.999 0Z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                  </p>
+                  <p>house#249(2ndfloor),road#30,Mohakhali DOHS</p>
                 </div>
               </div>
-            </div>
-            <!-- Main Header Bar -->
-            <div class="bg-white shadow py-1 w-full">
-              <div class="mx-auto flex justify-between items-center sm:pl-10">
-                <img src="/src/assets/logo.png" alt="Brand Logo" class="h-12 w-auto" />
-                <nav class="flex space-x-6">
-                  <a href="#" class="text-gray-800 hover:text-gray-600">Home</a>
-                  <a href="#" class="text-gray-800 hover:text-gray-600">About</a>
-                  <a href="#" class="text-gray-800 hover:text-gray-600">Services</a>
-                  <a href="#" class="text-gray-800 hover:text-gray-600">Contact</a>
-                </nav>
-                <!--  -->
-                <div class="flex flex-row items-center" >
-                  <div class="flex flex-row" >
-                      <div class="text-gray-300" >|</div>
-                      <div>search</div>
-                  </div>
-                  <div
-                    class="bg-gradient-to-r from-[#8942d4] to-[#6317e8] flex flex-row py-3 px-12 space-x-3"
+      
+              <div class="flex flex-row items-center space-x-2">
+                <span>
+                  <svg class="w-3 h-3" width="18" height="24" viewBox="0 0 18 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3.90625 20.8699H0.273438V9.19019H3.90625V20.8699ZM2.07031 7.62769C0.9375 7.62769 0 6.65112 0 5.47925C0 3.87769 1.71875 2.86206 3.125 3.68237C3.78906 4.03394 4.17969 4.73706 4.17969 5.47925C4.17969 6.65112 3.24219 7.62769 2.07031 7.62769ZM17.4609 20.8699H13.8672V15.2058C13.8672 13.8386 13.8281 12.1199 11.9531 12.1199C10.0781 12.1199 9.80469 13.5652 9.80469 15.0886V20.8699H6.17188V9.19019H9.64844V10.7917H9.6875C10.1953 9.89331 11.3672 8.91675 13.125 8.91675C16.7969 8.91675 17.5 11.3386 17.5 14.4636V20.8699H17.4609Z" fill="white"/>
+                    </svg>
+                    
+                </span>
+               
+                <span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-3 w-3"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
                   >
-                    <div class="flex items-center">call</div>
-                    <div class="text-xs text-white">
-                      <p class="flex flex-col justify-around">+88 02 87116</p>
-                      <p>Call Anytime</p>
-                    </div>
-                  </div>
+                    <path
+                      d="M19.633 7.997c.014.187.014.373.014.56 0 5.73-4.358 12.33-12.323 12.33-2.44 0-4.707-.717-6.613-1.95.338.04.68.054 1.027.054 2.028 0 3.895-.692 5.38-1.855-1.894-.034-3.495-1.287-4.044-3.008.265.048.53.075.8.075.39 0 .77-.053 1.134-.147-1.976-.397-3.46-2.144-3.46-4.238v-.054c.58.324 1.25.515 1.958.537-1.16-.772-1.928-2.09-1.928-3.586 0-.787.21-1.525.574-2.164 2.098 2.573 5.23 4.267 8.755 4.448-.07-.314-.104-.643-.104-.98 0-2.365 1.916-4.29 4.286-4.29 1.234 0 2.35.52 3.13 1.355.976-.192 1.888-.55 2.716-1.044-.32 1.002-.99 1.836-1.866 2.364.868-.1 1.697-.334 2.468-.674-.576.862-1.3 1.617-2.142 2.22z"
+                    />
+                  </svg>
+                </span>
+      
+                <span>
+                  <svg class="w-3 h-3" width="13" height="24" viewBox="0 0 13 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.8984 14.6199H7.96875V23.3699H4.0625V14.6199H0.859375V11.0261H4.0625V8.25269C4.0625 5.12769 5.9375 3.36987 8.78906 3.36987C10.1562 3.36987 11.6016 3.64331 11.6016 3.64331V6.72925H10C8.4375 6.72925 7.96875 7.66675 7.96875 8.68237V11.0261H11.4453L10.8984 14.6199Z" fill="white"/>
+                    </svg>
+                    
+                </span>
+               
+                <span>
+                  <svg class="w-3 h-3" width="20" height="24" viewBox="0 0 20 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19.0625 13.6042C19.0625 19.1511 15.2734 23.0574 9.6875 23.0574C4.29688 23.0574 0 18.7605 0 13.3699C0 8.01831 4.29688 3.68237 9.6875 3.68237C12.2656 3.68237 14.4922 4.65894 16.1719 6.22144L13.5156 8.7605C10.0781 5.44019 3.67188 7.94019 3.67188 13.3699C3.67188 16.7683 6.36719 19.5027 9.6875 19.5027C13.5156 19.5027 14.9609 16.7683 15.1562 15.323H9.6875V12.0027H18.9062C18.9844 12.5105 19.0625 12.9792 19.0625 13.6042Z" fill="white"/>
+                    </svg>
+                <span>
+                 
+                  
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Main Header Bar -->
+        <div class="bg-white shadow py-1 w-full">
+          <div class="mx-auto flex justify-between items-center sm:pl-10">
+            <img src="/src/assets/logo.png" alt="Brand Logo" class="h-12 w-auto" />
+            <nav class="flex space-x-6">
+              <a href="#" class="text-gray-900 hover:text-gray-600">Home</a>
+              <a href="#" class="text-gray-500 hover:text-gray-600">About</a>
+              <a href="#" class="text-gray-500 hover:text-gray-600">Services</a>
+              <a href="#" class="text-gray-500 hover:text-gray-600">Contact</a>
+            </nav>
+            <!--  -->
+            <div class="flex flex-row items-center">
+              <div class="flex flex-row">
+                <div class="text-gray-300 ">|</div>
+                <div class="mx-4">
+                  <svg
+                    class="w-6 h-6 text-gray-600 dark:text-white"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-width="2"
+                      d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <div
+                class="bg-gradient-to-r from-[#8942d4] to-[#6317e8] flex flex-row items-center py-3 px-12 space-x-3"
+              >
+                <div class="flex items-center bg-white rounded-full w-10 h-10 justify-center ">
+                  <svg class="w-4 h-4" width="56" height="53" viewBox="0 0 56 53" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M29.0452 20.0376C31.2734 20.8359 32.9867 22.4737 33.7682 24.5169C34.5775 26.633 34.3714 28.9355 33.2038 30.91C32.9922 31.2312 32.6051 31.5306 32.236 31.6584C31.7192 31.8374 31.1187 31.7975 30.5822 31.4875C29.7125 30.9623 29.3677 29.8422 29.9285 28.9042C30.4894 27.9663 30.6433 26.8387 30.2247 25.7441C29.8339 24.7226 28.9543 23.9529 27.8911 23.5775C26.8279 23.202 26.3354 22.133 26.6469 21.1988C27.0322 20.239 28.0837 19.7095 29.0452 20.0376ZM31.4831 13.0782C35.8377 14.6274 39.2363 17.8301 40.8551 22.0623C42.4739 26.2945 42.0616 30.8997 39.7444 34.6771C39.459 35.0239 39.1457 35.2977 38.7028 35.4511C38.186 35.6301 37.6593 35.5646 37.1228 35.2546C36.1793 34.755 35.9083 33.6093 36.4232 32.7699C38.1517 29.8574 38.41 26.3799 37.2378 23.3151C36.0377 20.1774 33.5187 17.7445 30.2272 16.5706C29.2378 16.1696 28.6715 15.1262 29.0568 14.1664C29.3683 13.2321 30.4198 12.7027 31.4831 13.0782ZM33.9209 6.11873C40.4021 8.41897 45.486 13.1864 47.9421 19.6077C50.3702 25.9561 49.7519 32.8638 46.3129 38.5172C46.0554 38.9369 45.7421 39.2107 45.373 39.3386C44.8563 39.5175 44.2558 39.4776 43.7192 39.1676C42.8495 38.6425 42.5047 37.5224 42.9917 36.61C45.8419 31.8215 46.3802 26.0158 44.3986 20.835C42.3891 15.5812 38.083 11.536 32.6651 9.61123C31.6756 9.21019 31.1832 8.14121 31.4947 7.20697C31.88 6.24716 32.9315 5.71769 33.9209 6.11873ZM19.0314 22.9274L14.9793 23.9177C15.0658 28.5153 16.7683 32.9665 19.8077 36.5414L23.5808 34.8214C24.2911 34.4928 25.2706 34.6493 25.845 35.2768L30.6255 40.5624C31.3017 41.2373 31.2954 42.3137 30.7984 42.9816L26.9507 47.785C26.4538 48.4529 25.4383 48.6394 24.6244 48.2602C10.6871 41.7662 4.46315 25.494 10.7532 11.9943C11.1205 11.206 12.0244 10.7277 12.8562 10.9354L19.0484 12.2615C19.8802 12.4692 20.6122 13.2899 20.5501 14.2204L20.4584 21.1936C20.4422 22.0256 19.7976 22.7447 19.0314 22.9274Z" fill="#6317e8"/>
+                    </svg>
+                </div>
+                <div class="text-xs text-white">
+                  <p class="flex flex-col justify-around">+88 02 87116</p>
+                  <p>Call Anytime</p>
                 </div>
               </div>
             </div>
-          </header>
-          
-        <!-- header -->
-        <!-- <div id="header"></div> -->
-        <div id="hero"></div>
-        <div id="company" ></div>
-        <div id="services"></div>
-
-        <div id="about" class="py-16">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold text-center mb-8">About Us</h2>
-
-                <!-- Simple Slider -->
-                <div class="slider">
-                    <div class="slider-container">
-                        <!-- Slide 1 -->
-                        <div class="slide flex items-center justify-center bg-white shadow-md rounded-lg">
-                            <div class="text-center">
-                                <h2 class="text-xl font-bold mb-2">Card 1</h2>
-                                <p class="text-gray-700">This is the content of the first card.</p>
-                            </div>
-                        </div>
-                        <!-- Slide 2 -->
-                        <div class="slide flex items-center justify-center bg-white shadow-md rounded-lg">
-                            <div class="text-center">
-                                <h2 class="text-xl font-bold mb-2">Card 2</h2>
-                                <p class="text-gray-700">This is the content of the second card.</p>
-                            </div>
-                        </div>
-                        <!-- Slide 3 -->
-                        <div class="slide flex items-center justify-center bg-white shadow-md rounded-lg">
-                            <div class="text-center">
-                                <h2 class="text-xl font-bold mb-2">Card 3</h2>
-                                <p class="text-gray-700">This is the content of the third card.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
-        <div id="footer"></div>
+      </header>
+            <!-- header -->
+            <!-- hero -->
+            <div
+            class="relative bg-cover bg-center h-[600px]"
+            style="background-image: url('/src/assets/hero-slider.jpg')"
+          >
+            <div class="hidden sm:block absolute top-0 right-0 opacity-50">
+              <img
+                src="/src/assets/hero-shape-1.png"
+                alt="Hero Shape"
+                class="h-[600px] w-auto"
+              />
+            </div>
+            <div class="absolute hidden sm:block top-0 right-0">
+              <img
+                src="/src/assets/hero-shape-2.png"
+                alt="Hero Shape"
+                class="h-[600px] w-auto"
+              />
+            </div>
+            <div class="absolute top-0 right-0 hidden sm:block opacity-90">
+              <img
+                src="/src/assets/hero-shape-3.png"
+                alt="Hero Shape"
+                class="h-[600px] w-auto"
+              />
+            </div>
+            <div class="absolute top-0 left-0 opacity-90 hidden sm:block">
+              <img
+                src="/src/assets/hero-line.png"
+                alt="Hero Shape"
+                class="h-[166px] w-auto"
+              />
+            </div>
+          
+            <div class="absolute inset-0 bg-[#24193a] opacity-70"></div>
+          
+            <div
+              class="relative flex items-center justify-center h-full text-center text-white"
+            >
+              <div class="flex flex-row items-center space-x-8">
+                <div
+                  class="sm:flex flex-col hidden space-y-2 text-lightPurple font-semibold"
+                >
+                  <span>Y</span><span>G</span> <span>O</span> <span>L</span> <span>O</span
+                  ><span>N</span><span>H</span><span>H</span><span>C</span><span>E</span
+                  ><span>T</span>
+                </div>
+                <div class="flex flex-col justify-start items-start space-y-4">
+                  <p class="text-grayLight text-sm">Welcome to best IT solution</p>
+                  <h1 class="text-6xl font-bold text-grayLight mb-4">
+                    Provide IT Solution & Services
+                  </h1>
+                  <button
+                    class="text-gray-100 font-medium text-lg bg-primary rounded-sm px-12 py-4"
+                  >
+                    LEARN MORE
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+                <!-- hero -->
+                <!-- company about -->
+                <div class="relative bg-cover bg-center">
+                  <div class="absolute inset-0 opacity-40"></div>
+                
+                  <div
+                    class="w-[75%] my-36 mx-auto relative flex items-center justify-center h-full text-center text-white"
+                  >
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-12 relative">
+                      <!--  -->
+                      <div class="col-span-1 relative">
+                        <!-- absolute properties -->
+                        <div class="absolute hidden sm:block -bottom-40 -left-56">
+                          <img
+                            src="/src/assets/about-shapt-left-bottom.png"
+                            alt="Hero Shape"
+                            class="h-[336px] w-auto"
+                          />
+                        </div>
+                        <div class="absolute -bottom-8 left-72 hidden sm:block">
+                          <img
+                            src="/src/assets/about-2.jpg"
+                            alt="Hero Shape"
+                            class="h-[329px] w-auto"
+                          />
+                        </div>
+                        <!-- 25 years -->
+                        <div
+                          class="absolute -bottom-12 left-0 sm:left-40 rounded-l-full border-r-8 border-violet-700 rounded-r-md bg-white z-50 shadow-md"
+                        >
+                          <div class="flex flex-row items-center my-4 mx-4 space-x-6">
+                            <div class="text-4xl mx-3 font-semibold text-purple-800">25</div>
+                            <p class="text-gray-400 text-xl text-left">
+                              years <br />
+                              experience
+                            </p>
+                          </div>
+                        </div>
+                        <!--  -->
+                        <div
+                          class="absolute top-12 bottom-6 hidden sm:block right-0 sm:right-12"
+                        >
+                          <div class="border border-violet-200 rounded-md p-2">
+                            <div class="border border-violet-200 rounded-md p-2">
+                              <div class="bg-violet-700 p-5">
+                                <div class="w-6 h-6 flex justify-center items-center">
+                                  <svg
+                                    width="100"
+                                    height="100"
+                                    viewBox="0 0 100 100"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <polygon points="30,15 70,50 30,85" fill="white" />
+                                  </svg>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- absolute properties -->
+                        <div class="mr-20">
+                          <img
+                            src="/src/assets/about-1.jpg"
+                            alt="Hero Shape"
+                            class="h-[579px] w-auto"
+                          />
+                        </div>
+                      </div>
+                
+                      <!--  -->
+                      <div class="col-span-1 text-left space-y-4">
+                        <div class="space-y-3">
+                          <p class="text-primary text-sm">ABOUT COMPANY</p>
+                          <h2 class="text-2xl sm:text-4xl text-gray-800 font-semibold">
+                            The World's Networking <br />Company
+                          </h2>
+                        </div>
+                        <div>
+                          <p class="text-sm text-gray-400">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias,
+                            neque. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Suscipit culpa animi pariatur quod deleniti nobis repellendus?
+                            Asperiores atque inventore sequi culpa! Minima ab rem dolores.
+                            <br />
+                            <br />
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
+                            explicabo, aliquid beatae fugit quaerat corrupti?
+                          </p>
+                        </div>
+                        <div
+                          class="grid grid-cols-1 sm:grid-cols-2 gap-5 border-b border-gray-300 py-6"
+                        >
+                          <div
+                            class="flex col-span-1 flex-row items-center space-x-2 px-6 py-3 bg-purple-50"
+                          >
+                            <div>
+                              <svg
+                                class="w-16 h-16 text-gray-600"
+                                width="56"
+                                height="53"
+                                viewBox="0 0 56 53"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M29.0452 20.0376C31.2734 20.8359 32.9867 22.4737 33.7682 24.5169C34.5775 26.633 34.3714 28.9355 33.2038 30.91C32.9922 31.2312 32.6051 31.5306 32.236 31.6584C31.7192 31.8374 31.1187 31.7975 30.5822 31.4875C29.7125 30.9623 29.3677 29.8422 29.9285 28.9042C30.4894 27.9663 30.6433 26.8387 30.2247 25.7441C29.8339 24.7226 28.9543 23.9529 27.8911 23.5775C26.8279 23.202 26.3354 22.133 26.6469 21.1988C27.0322 20.239 28.0837 19.7095 29.0452 20.0376ZM31.4831 13.0782C35.8377 14.6274 39.2363 17.8301 40.8551 22.0623C42.4739 26.2945 42.0616 30.8997 39.7444 34.6771C39.459 35.0239 39.1457 35.2977 38.7028 35.4511C38.186 35.6301 37.6593 35.5646 37.1228 35.2546C36.1793 34.755 35.9083 33.6093 36.4232 32.7699C38.1517 29.8574 38.41 26.3799 37.2378 23.3151C36.0377 20.1774 33.5187 17.7445 30.2272 16.5706C29.2378 16.1696 28.6715 15.1262 29.0568 14.1664C29.3683 13.2321 30.4198 12.7027 31.4831 13.0782ZM33.9209 6.11873C40.4021 8.41897 45.486 13.1864 47.9421 19.6077C50.3702 25.9561 49.7519 32.8638 46.3129 38.5172C46.0554 38.9369 45.7421 39.2107 45.373 39.3386C44.8563 39.5175 44.2558 39.4776 43.7192 39.1676C42.8495 38.6425 42.5047 37.5224 42.9917 36.61C45.8419 31.8215 46.3802 26.0158 44.3986 20.835C42.3891 15.5812 38.083 11.536 32.6651 9.61123C31.6756 9.21019 31.1832 8.14121 31.4947 7.20697C31.88 6.24716 32.9315 5.71769 33.9209 6.11873ZM19.0314 22.9274L14.9793 23.9177C15.0658 28.5153 16.7683 32.9665 19.8077 36.5414L23.5808 34.8214C24.2911 34.4928 25.2706 34.6493 25.845 35.2768L30.6255 40.5624C31.3017 41.2373 31.2954 42.3137 30.7984 42.9816L26.9507 47.785C26.4538 48.4529 25.4383 48.6394 24.6244 48.2602C10.6871 41.7662 4.46315 25.494 10.7532 11.9943C11.1205 11.206 12.0244 10.7277 12.8562 10.9354L19.0484 12.2615C19.8802 12.4692 20.6122 13.2899 20.5501 14.2204L20.4584 21.1936C20.4422 22.0256 19.7976 22.7447 19.0314 22.9274Z"
+                                  fill="#4a4a4d"
+                                />
+                              </svg>
+                            </div>
+                            <div class="space-y-3">
+                              <p class="text-primary text-bse font-semibold">IT Consultant</p>
+                              <p class="text-gray-400 text-sm">Smarter Solutions</p>
+                            </div>
+                          </div>
+                          <div
+                            class="flex col-span-1 flex-row items-center space-x-2 px-6 py-3 bg-purple-50"
+                          >
+                            <div>
+                              <svg
+                                class="w-16 h-16 text-gray-600"
+                                width="56"
+                                height="53"
+                                viewBox="0 0 56 53"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M29.0452 20.0376C31.2734 20.8359 32.9867 22.4737 33.7682 24.5169C34.5775 26.633 34.3714 28.9355 33.2038 30.91C32.9922 31.2312 32.6051 31.5306 32.236 31.6584C31.7192 31.8374 31.1187 31.7975 30.5822 31.4875C29.7125 30.9623 29.3677 29.8422 29.9285 28.9042C30.4894 27.9663 30.6433 26.8387 30.2247 25.7441C29.8339 24.7226 28.9543 23.9529 27.8911 23.5775C26.8279 23.202 26.3354 22.133 26.6469 21.1988C27.0322 20.239 28.0837 19.7095 29.0452 20.0376ZM31.4831 13.0782C35.8377 14.6274 39.2363 17.8301 40.8551 22.0623C42.4739 26.2945 42.0616 30.8997 39.7444 34.6771C39.459 35.0239 39.1457 35.2977 38.7028 35.4511C38.186 35.6301 37.6593 35.5646 37.1228 35.2546C36.1793 34.755 35.9083 33.6093 36.4232 32.7699C38.1517 29.8574 38.41 26.3799 37.2378 23.3151C36.0377 20.1774 33.5187 17.7445 30.2272 16.5706C29.2378 16.1696 28.6715 15.1262 29.0568 14.1664C29.3683 13.2321 30.4198 12.7027 31.4831 13.0782ZM33.9209 6.11873C40.4021 8.41897 45.486 13.1864 47.9421 19.6077C50.3702 25.9561 49.7519 32.8638 46.3129 38.5172C46.0554 38.9369 45.7421 39.2107 45.373 39.3386C44.8563 39.5175 44.2558 39.4776 43.7192 39.1676C42.8495 38.6425 42.5047 37.5224 42.9917 36.61C45.8419 31.8215 46.3802 26.0158 44.3986 20.835C42.3891 15.5812 38.083 11.536 32.6651 9.61123C31.6756 9.21019 31.1832 8.14121 31.4947 7.20697C31.88 6.24716 32.9315 5.71769 33.9209 6.11873ZM19.0314 22.9274L14.9793 23.9177C15.0658 28.5153 16.7683 32.9665 19.8077 36.5414L23.5808 34.8214C24.2911 34.4928 25.2706 34.6493 25.845 35.2768L30.6255 40.5624C31.3017 41.2373 31.2954 42.3137 30.7984 42.9816L26.9507 47.785C26.4538 48.4529 25.4383 48.6394 24.6244 48.2602C10.6871 41.7662 4.46315 25.494 10.7532 11.9943C11.1205 11.206 12.0244 10.7277 12.8562 10.9354L19.0484 12.2615C19.8802 12.4692 20.6122 13.2899 20.5501 14.2204L20.4584 21.1936C20.4422 22.0256 19.7976 22.7447 19.0314 22.9274Z"
+                                  fill="#4a4a4d"
+                                />
+                              </svg>
+                            </div>
+                            <div class="space-y-3">
+                              <p class="text-primary text-bse font-semibold">IT Consultant</p>
+                              <p class="text-gray-400 text-sm">Smarter Solutions</p>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- founder -->
+                        <div class="text-black flex flex-row items-center justify-between py-6">
+                          <div class="flex flex-col sm:flex-row items-center space-x-6">
+                            <img
+                              src="/src/assets/feedback-1.jpg"
+                              alt="Hero Shape"
+                              class="h-[100px] w-auto"
+                            />
+                
+                            <div class="mt-6 sm:mt-0 sm:space-y-2">
+                              <p class="text-gray-800 text-lg font-semibold">Michele Morrone</p>
+                              <p class="text-primary text-base">FOUNDER CEO</p>
+                            </div>
+                          </div>
+                          <button class="text-gray-100 bg-primary px-5 py-2">LEARN MORE</button>
+                        </div>
+                      </div>
+                      <!--  -->
+                    </div>
+                  </div>
+                </div>
+                      <!-- company about -->
+                      <!-- services -->
+                      <div
+                      class="relative bg-cover bg-center h-auto sm:h-[500px]"
+                      style="background-image: url('/src/assets/service-bg.png')"
+                    >
+                      <div class="absolute inset-0 bg-[#b9a9da] opacity-20"></div>
+                    
+                      <div
+                        class="relative flex flex-col items-center justify-center h-full text-center text-white"
+                      >
+                        <div class="space-y-4 my-4">
+                          <p class="text-sm text-primary mb-4">POPULAR SERVICES</p>
+                          <h1 class="text-3xl text-gray-800 font-bold">
+                            We Provide Our Client Best <br />
+                            IT Solution Services
+                          </h1>
+                        </div>
+                        <!--  -->
+                        <div
+                          class="space-x-0 space-y-2 sm:space-y-0 sm:space-x-6 flex flex-col sm:flex-row"
+                        >
+                          <div
+                            class="flex flex-col items-center space-y-2 justify-center bg-white py-5 px-4"
+                          >
+                            <img
+                              src="/src/assets/micro.svg"
+                              alt="Hero Shape"
+                              class="h-[50px] w-auto"
+                            />
+                            <h3 class="text-base text-gray-800 font-medium">Digital Marketing</h3>
+                            <p class="text-gray-400 text-xs">
+                              Providing the solution for <br />
+                              non-IT business
+                            </p>
+                          </div>
+                          <div
+                            class="flex flex-col items-center space-y-2 justify-center bg-white py-5 px-4"
+                          >
+                            <img
+                              src="/src/assets/micro.svg"
+                              alt="Hero Shape"
+                              class="h-[50px] w-auto"
+                            />
+                            <h3 class="text-base text-gray-800 font-medium">Digital Marketing</h3>
+                            <p class="text-gray-400 text-xs">
+                              Providing the solution for <br />
+                              non-IT business
+                            </p>
+                          </div>
+                          <div
+                            class="flex flex-col items-center space-y-2 justify-center bg-white py-5 px-4"
+                          >
+                            <img
+                              src="/src/assets/micro.svg"
+                              alt="Hero Shape"
+                              class="h-[50px] w-auto"
+                            />
+                            <h3 class="text-base text-gray-800 font-medium">Digital Marketing</h3>
+                            <p class="text-gray-400 text-xs">
+                              Providing the solution for <br />
+                              non-IT business
+                            </p>
+                          </div>
+                          <div
+                            class="flex flex-col items-center space-y-2 justify-center bg-white py-5 px-4"
+                          >
+                            <img
+                              src="/src/assets/micro.svg"
+                              alt="Hero Shape"
+                              class="h-[50px] w-auto"
+                            />
+                            <h3 class="text-base text-gray-800 font-medium">Digital Marketing</h3>
+                            <p class="text-gray-400 text-xs">
+                              Providing the solution for <br />
+                              non-IT business
+                            </p>
+                          </div>
+                          <div
+                            class="flex flex-col items-center space-y-2 justify-center bg-white py-5 px-4"
+                          >
+                            <img
+                              src="/src/assets/micro.svg"
+                              alt="Hero Shape"
+                              class="h-[50px] w-auto"
+                            />
+                            <h3 class="text-base text-gray-800 font-medium">Digital Marketing</h3>
+                            <p class="text-gray-400 text-xs">
+                              Providing the solution for <br />
+                              non-IT business
+                            </p>
+                          </div>
+                        </div>
+                        <!--  -->
+                      </div>
+                    </div>
+                          <!-- sercices -->
+
+      <div id="about" class="max-w-6xl mx-auto py-16">
+        <div class="container mx-auto px-4">
+          <div class="space-y-4 text-center max-w-lg mx-auto">
+            <p class="text-primary text-sm">DIRECT FROM THE BLOG POSTS</p>
+            <h2 class="text-2xl sm:text-4xl text-gray-800 font-semibold">
+              Checkout Our Latest <br />
+              News & Articles
+            </h2>
+          </div>
+
+          <!-- Simple Slider -->
+          <div class="slider">
+            <div class="slider-container grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <!-- Slide 1 -->
+              <div
+                class="slide flex m-2 flex-col items-center col-span-1 justify-center bg-white shadow-md rounded-lg"
+              >
+                <img
+                  src="/src/assets/blog-1.jpg"
+                  alt="Hero Shape"
+                  class="h-auto w-full"
+                />
+                <div class="p-4 space-y-4">
+                  <!-- content -->
+                  <div class="flex flex-row space-x-2 items-center">
+                    <p class="text-xs text-primary flex flex-row space-x-1">
+                      <span class="w-3 h-3">
+                        <svg
+                          width="13"
+                          height="16"
+                          viewBox="0 0 13 16"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M4.375 1.625V2.5H7.875V1.625C7.875 1.16016 8.25781 0.75 8.75 0.75C9.21484 0.75 9.625 1.16016 9.625 1.625V2.5H10.9375C11.6484 2.5 12.25 3.10156 12.25 3.8125V5.125H0V3.8125C0 3.10156 0.574219 2.5 1.3125 2.5H2.625V1.625C2.625 1.16016 3.00781 0.75 3.5 0.75C3.96484 0.75 4.375 1.16016 4.375 1.625ZM0 6H12.25V13.4375C12.25 14.1758 11.6484 14.75 10.9375 14.75H1.3125C0.574219 14.75 0 14.1758 0 13.4375V6ZM1.75 9.0625C1.75 9.30859 1.94141 9.5 2.1875 9.5H3.0625C3.28125 9.5 3.5 9.30859 3.5 9.0625V8.1875C3.5 7.96875 3.28125 7.75 3.0625 7.75H2.1875C1.94141 7.75 1.75 7.96875 1.75 8.1875V9.0625ZM5.25 9.0625C5.25 9.30859 5.44141 9.5 5.6875 9.5H6.5625C6.78125 9.5 7 9.30859 7 9.0625V8.1875C7 7.96875 6.78125 7.75 6.5625 7.75H5.6875C5.44141 7.75 5.25 7.96875 5.25 8.1875V9.0625ZM9.1875 7.75C8.94141 7.75 8.75 7.96875 8.75 8.1875V9.0625C8.75 9.30859 8.94141 9.5 9.1875 9.5H10.0625C10.2812 9.5 10.5 9.30859 10.5 9.0625V8.1875C10.5 7.96875 10.2812 7.75 10.0625 7.75H9.1875ZM1.75 12.5625C1.75 12.8086 1.94141 13 2.1875 13H3.0625C3.28125 13 3.5 12.8086 3.5 12.5625V11.6875C3.5 11.4688 3.28125 11.25 3.0625 11.25H2.1875C1.94141 11.25 1.75 11.4688 1.75 11.6875V12.5625ZM5.6875 11.25C5.44141 11.25 5.25 11.4688 5.25 11.6875V12.5625C5.25 12.8086 5.44141 13 5.6875 13H6.5625C6.78125 13 7 12.8086 7 12.5625V11.6875C7 11.4688 6.78125 11.25 6.5625 11.25H5.6875ZM8.75 12.5625C8.75 12.8086 8.94141 13 9.1875 13H10.0625C10.2812 13 10.5 12.8086 10.5 12.5625V11.6875C10.5 11.4688 10.2812 11.25 10.0625 11.25H9.1875C8.94141 11.25 8.75 11.4688 8.75 11.6875V12.5625Z"
+                            fill="#6726e0"
+                          />
+                        </svg>
+                      </span>
+                      <span>APR,23 2024</span>
+                    </p>
+                    <button
+                      class="text-gray-100 px-2 py-1 bg-primary rounded-sm text-sm"
+                    >
+                      Graphic
+                    </button>
+                  </div>
+                  <div class="space-y-2">
+                    <h2 class="text-lg text-gray-800 font-semibold">
+                      Technology Suopport Allows <br />
+                      Erie non-profit to Serve
+                    </h2>
+                    <p class="text-primary text-xs font-semibold">READ MORE</p>
+                  </div>
+                  <!-- content -->
+                </div>
+              </div>
+              <!-- Slide 2 -->
+              <div
+                class="slide flex m-2 flex-col items-center col-span-1 justify-center bg-white shadow-md rounded-lg"
+              >
+                <img
+                  src="/src/assets/blog-2.jpg"
+                  alt="Hero Shape"
+                  class="h-auto w-full"
+                />
+                <div class="p-4 space-y-4">
+                  <!-- content -->
+                  <div class="flex flex-row space-x-2 items-center">
+                    <p class="text-xs text-primary flex flex-row space-x-1">
+                      <span class="w-3 h-3">
+                        <svg
+                          width="13"
+                          height="16"
+                          viewBox="0 0 13 16"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M4.375 1.625V2.5H7.875V1.625C7.875 1.16016 8.25781 0.75 8.75 0.75C9.21484 0.75 9.625 1.16016 9.625 1.625V2.5H10.9375C11.6484 2.5 12.25 3.10156 12.25 3.8125V5.125H0V3.8125C0 3.10156 0.574219 2.5 1.3125 2.5H2.625V1.625C2.625 1.16016 3.00781 0.75 3.5 0.75C3.96484 0.75 4.375 1.16016 4.375 1.625ZM0 6H12.25V13.4375C12.25 14.1758 11.6484 14.75 10.9375 14.75H1.3125C0.574219 14.75 0 14.1758 0 13.4375V6ZM1.75 9.0625C1.75 9.30859 1.94141 9.5 2.1875 9.5H3.0625C3.28125 9.5 3.5 9.30859 3.5 9.0625V8.1875C3.5 7.96875 3.28125 7.75 3.0625 7.75H2.1875C1.94141 7.75 1.75 7.96875 1.75 8.1875V9.0625ZM5.25 9.0625C5.25 9.30859 5.44141 9.5 5.6875 9.5H6.5625C6.78125 9.5 7 9.30859 7 9.0625V8.1875C7 7.96875 6.78125 7.75 6.5625 7.75H5.6875C5.44141 7.75 5.25 7.96875 5.25 8.1875V9.0625ZM9.1875 7.75C8.94141 7.75 8.75 7.96875 8.75 8.1875V9.0625C8.75 9.30859 8.94141 9.5 9.1875 9.5H10.0625C10.2812 9.5 10.5 9.30859 10.5 9.0625V8.1875C10.5 7.96875 10.2812 7.75 10.0625 7.75H9.1875ZM1.75 12.5625C1.75 12.8086 1.94141 13 2.1875 13H3.0625C3.28125 13 3.5 12.8086 3.5 12.5625V11.6875C3.5 11.4688 3.28125 11.25 3.0625 11.25H2.1875C1.94141 11.25 1.75 11.4688 1.75 11.6875V12.5625ZM5.6875 11.25C5.44141 11.25 5.25 11.4688 5.25 11.6875V12.5625C5.25 12.8086 5.44141 13 5.6875 13H6.5625C6.78125 13 7 12.8086 7 12.5625V11.6875C7 11.4688 6.78125 11.25 6.5625 11.25H5.6875ZM8.75 12.5625C8.75 12.8086 8.94141 13 9.1875 13H10.0625C10.2812 13 10.5 12.8086 10.5 12.5625V11.6875C10.5 11.4688 10.2812 11.25 10.0625 11.25H9.1875C8.94141 11.25 8.75 11.4688 8.75 11.6875V12.5625Z"
+                            fill="#6726e0"
+                          />
+                        </svg>
+                      </span>
+                      <span>APR,23 2024</span>
+                    </p>
+                    <button
+                      class="text-gray-100 px-2 py-1 bg-primary rounded-sm text-sm"
+                    >
+                      Graphic
+                    </button>
+                  </div>
+                  <div class="space-y-2">
+                    <h2 class="text-lg text-gray-800 font-semibold">
+                      Technology Suopport Allows <br />
+                      Erie non-profit to Serve
+                    </h2>
+                    <p class="text-primary text-xs font-semibold">READ MORE</p>
+                  </div>
+                  <!-- content -->
+                </div>
+              </div>
+              <!-- Slide 3 -->
+              <div
+                class="slide flex m-2 flex-col items-center col-span-1 justify-center bg-white shadow-md rounded-lg"
+              >
+                <img
+                  src="/src/assets/blog-3.jpg"
+                  alt="Hero Shape"
+                  class="h-auto w-full"
+                />
+                <div class="p-4 space-y-4">
+                  <!-- content -->
+                  <div class="flex flex-row space-x-2 items-center">
+                    <p class="text-xs text-primary flex flex-row space-x-1">
+                      <span class="w-3 h-3">
+                        <svg
+                          width="13"
+                          height="16"
+                          viewBox="0 0 13 16"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M4.375 1.625V2.5H7.875V1.625C7.875 1.16016 8.25781 0.75 8.75 0.75C9.21484 0.75 9.625 1.16016 9.625 1.625V2.5H10.9375C11.6484 2.5 12.25 3.10156 12.25 3.8125V5.125H0V3.8125C0 3.10156 0.574219 2.5 1.3125 2.5H2.625V1.625C2.625 1.16016 3.00781 0.75 3.5 0.75C3.96484 0.75 4.375 1.16016 4.375 1.625ZM0 6H12.25V13.4375C12.25 14.1758 11.6484 14.75 10.9375 14.75H1.3125C0.574219 14.75 0 14.1758 0 13.4375V6ZM1.75 9.0625C1.75 9.30859 1.94141 9.5 2.1875 9.5H3.0625C3.28125 9.5 3.5 9.30859 3.5 9.0625V8.1875C3.5 7.96875 3.28125 7.75 3.0625 7.75H2.1875C1.94141 7.75 1.75 7.96875 1.75 8.1875V9.0625ZM5.25 9.0625C5.25 9.30859 5.44141 9.5 5.6875 9.5H6.5625C6.78125 9.5 7 9.30859 7 9.0625V8.1875C7 7.96875 6.78125 7.75 6.5625 7.75H5.6875C5.44141 7.75 5.25 7.96875 5.25 8.1875V9.0625ZM9.1875 7.75C8.94141 7.75 8.75 7.96875 8.75 8.1875V9.0625C8.75 9.30859 8.94141 9.5 9.1875 9.5H10.0625C10.2812 9.5 10.5 9.30859 10.5 9.0625V8.1875C10.5 7.96875 10.2812 7.75 10.0625 7.75H9.1875ZM1.75 12.5625C1.75 12.8086 1.94141 13 2.1875 13H3.0625C3.28125 13 3.5 12.8086 3.5 12.5625V11.6875C3.5 11.4688 3.28125 11.25 3.0625 11.25H2.1875C1.94141 11.25 1.75 11.4688 1.75 11.6875V12.5625ZM5.6875 11.25C5.44141 11.25 5.25 11.4688 5.25 11.6875V12.5625C5.25 12.8086 5.44141 13 5.6875 13H6.5625C6.78125 13 7 12.8086 7 12.5625V11.6875C7 11.4688 6.78125 11.25 6.5625 11.25H5.6875ZM8.75 12.5625C8.75 12.8086 8.94141 13 9.1875 13H10.0625C10.2812 13 10.5 12.8086 10.5 12.5625V11.6875C10.5 11.4688 10.2812 11.25 10.0625 11.25H9.1875C8.94141 11.25 8.75 11.4688 8.75 11.6875V12.5625Z"
+                            fill="#6726e0"
+                          />
+                        </svg>
+                      </span>
+                      <span>APR,23 2024</span>
+                    </p>
+                    <button
+                      class="text-gray-100 px-2 py-1 bg-primary rounded-sm text-sm"
+                    >
+                      Graphic
+                    </button>
+                  </div>
+                  <div class="space-y-2">
+                    <h2 class="text-lg text-gray-800 font-semibold">
+                      Technology Suopport Allows <br />
+                      Erie non-profit to Serve
+                    </h2>
+                    <p class="text-primary text-xs font-semibold">READ MORE</p>
+                  </div>
+                  <!-- content -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- footer -->
+      <footer
+      class="relative bg-cover bg-center h-[1000px] sm:h-[440px]"
+      style="background-image: url('/src/assets/footer-bg.png')"
+    >
+      <div class="absolute inset-0 bg-[#0d071a] opacity-30"></div>
+    
+      <div
+        class="w-[75%] mx-auto relative items-center justify-center h-full text-center text-white"
+      >
+        <div class="grid grid-cols-1 sm:grid-cols-2 pt-32">
+          <!-- sec1 -->
+          <div class="col-span-1 grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <!-- span1 -->
+            <div class="col-span-1 text-left flex flex-col justify-center my-auto">
+              <p class="text-xs text-lightPurple">
+                We work Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Eius veniam, iste voluptates incidunt pariatur enim.
+              </p>
+              <div class="flex flex-row items-center space-x-4 my-4">
+                <span class="p-2 rounded-full border border-primary">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-3 w-3"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M19.633 7.997c.014.187.014.373.014.56 0 5.73-4.358 12.33-12.323 12.33-2.44 0-4.707-.717-6.613-1.95.338.04.68.054 1.027.054 2.028 0 3.895-.692 5.38-1.855-1.894-.034-3.495-1.287-4.044-3.008.265.048.53.075.8.075.39 0 .77-.053 1.134-.147-1.976-.397-3.46-2.144-3.46-4.238v-.054c.58.324 1.25.515 1.958.537-1.16-.772-1.928-2.09-1.928-3.586 0-.787.21-1.525.574-2.164 2.098 2.573 5.23 4.267 8.755 4.448-.07-.314-.104-.643-.104-.98 0-2.365 1.916-4.29 4.286-4.29 1.234 0 2.35.52 3.13 1.355.976-.192 1.888-.55 2.716-1.044-.32 1.002-.99 1.836-1.866 2.364.868-.1 1.697-.334 2.468-.674-.576.862-1.3 1.617-2.142 2.22z"
+                    />
+                  </svg>
+                </span>
+                <span class="p-2 rounded-full border border-primary">
+                  <svg
+                    class="w-3 h-3"
+                    width="13"
+                    height="24"
+                    viewBox="0 0 13 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M10.8984 14.6199H7.96875V23.3699H4.0625V14.6199H0.859375V11.0261H4.0625V8.25269C4.0625 5.12769 5.9375 3.36987 8.78906 3.36987C10.1562 3.36987 11.6016 3.64331 11.6016 3.64331V6.72925H10C8.4375 6.72925 7.96875 7.66675 7.96875 8.68237V11.0261H11.4453L10.8984 14.6199Z"
+                      fill="white"
+                    />
+                  </svg>
+                </span>
+                <span class="p-2 rounded-full border border-primary">
+                  <svg
+                    class="w-3 h-3"
+                    width="18"
+                    height="24"
+                    viewBox="0 0 18 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M3.90625 20.8699H0.273438V9.19019H3.90625V20.8699ZM2.07031 7.62769C0.9375 7.62769 0 6.65112 0 5.47925C0 3.87769 1.71875 2.86206 3.125 3.68237C3.78906 4.03394 4.17969 4.73706 4.17969 5.47925C4.17969 6.65112 3.24219 7.62769 2.07031 7.62769ZM17.4609 20.8699H13.8672V15.2058C13.8672 13.8386 13.8281 12.1199 11.9531 12.1199C10.0781 12.1199 9.80469 13.5652 9.80469 15.0886V20.8699H6.17188V9.19019H9.64844V10.7917H9.6875C10.1953 9.89331 11.3672 8.91675 13.125 8.91675C16.7969 8.91675 17.5 11.3386 17.5 14.4636V20.8699H17.4609Z"
+                      fill="white"
+                    />
+                  </svg>
+                </span>
+                <span class="p-2 rounded-full border border-primary">
+                  <svg
+                    class="w-3 h-3"
+                    width="20"
+                    height="24"
+                    viewBox="0 0 20 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M19.0625 13.6042C19.0625 19.1511 15.2734 23.0574 9.6875 23.0574C4.29688 23.0574 0 18.7605 0 13.3699C0 8.01831 4.29688 3.68237 9.6875 3.68237C12.2656 3.68237 14.4922 4.65894 16.1719 6.22144L13.5156 8.7605C10.0781 5.44019 3.67188 7.94019 3.67188 13.3699C3.67188 16.7683 6.36719 19.5027 9.6875 19.5027C13.5156 19.5027 14.9609 16.7683 15.1562 15.323H9.6875V12.0027H18.9062C18.9844 12.5105 19.0625 12.9792 19.0625 13.6042Z"
+                      fill="white"
+                    />
+                  </svg>
+                </span>
+              </div>
+            </div>
+            <!-- span1 -->
+            <div class="col-span-1 text-left space-y-4">
+              <div>
+                <h3 class="text-white text-base fornt-semibold">Subscribe</h3>
+                <div class="bg-purple-500 h-[2px] w-8"></div>
+              </div>
+              <div class="text-xs text-lightPurple space-y-2">
+                <p class="">Cyber Security</p>
+                <p class="">IT Management</p>
+                <p class="">QA & Testing</p>
+                <p class="">Infrastructure Plan</p>
+                <p class="">IT Consultant</p>
+              </div>
+            </div>
+            <!-- span2 -->
+          </div>
+          <!-- sec2 -->
+          <div class="col-span-1 grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <!-- span3 -->
+            <div class="flex flex-col items-start space-y-4">
+              <div>
+                <h3 class="text-white text-base fornt-semibold">Subscribe</h3>
+                <div class="bg-purple-500 h-[2px] w-8"></div>
+              </div>
+              <p class="text-lightPurple my-4">
+                Sign up to recieve the latest article
+              </p>
+              <div class="text-xs text-lightPurple space-y-2">
+                <input
+                  class="bg-white text-gray-500 w-full p-3"
+                  placeholder="Enter Your Email"
+                />
+              </div>
+              <button class="bg-primary px-3 py-2 rounded-sm">Register</button>
+            </div>
+            <!-- span3 -->
+            <div class="space-y-4">
+              <div class="text-left">
+                <h3 class="text-white text-base fornt-semibold">Contact</h3>
+                <div class="bg-purple-500 h-[2px] w-8"></div>
+              </div>
+              <div class="flex flex-row space-x-2 items-center">
+                <svg
+                  class="w-4 h-4 flex items-center"
+                  width="56"
+                  height="53"
+                  viewBox="0 0 56 53"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M29.0452 20.0376C31.2734 20.8359 32.9867 22.4737 33.7682 24.5169C34.5775 26.633 34.3714 28.9355 33.2038 30.91C32.9922 31.2312 32.6051 31.5306 32.236 31.6584C31.7192 31.8374 31.1187 31.7975 30.5822 31.4875C29.7125 30.9623 29.3677 29.8422 29.9285 28.9042C30.4894 27.9663 30.6433 26.8387 30.2247 25.7441C29.8339 24.7226 28.9543 23.9529 27.8911 23.5775C26.8279 23.202 26.3354 22.133 26.6469 21.1988C27.0322 20.239 28.0837 19.7095 29.0452 20.0376ZM31.4831 13.0782C35.8377 14.6274 39.2363 17.8301 40.8551 22.0623C42.4739 26.2945 42.0616 30.8997 39.7444 34.6771C39.459 35.0239 39.1457 35.2977 38.7028 35.4511C38.186 35.6301 37.6593 35.5646 37.1228 35.2546C36.1793 34.755 35.9083 33.6093 36.4232 32.7699C38.1517 29.8574 38.41 26.3799 37.2378 23.3151C36.0377 20.1774 33.5187 17.7445 30.2272 16.5706C29.2378 16.1696 28.6715 15.1262 29.0568 14.1664C29.3683 13.2321 30.4198 12.7027 31.4831 13.0782ZM33.9209 6.11873C40.4021 8.41897 45.486 13.1864 47.9421 19.6077C50.3702 25.9561 49.7519 32.8638 46.3129 38.5172C46.0554 38.9369 45.7421 39.2107 45.373 39.3386C44.8563 39.5175 44.2558 39.4776 43.7192 39.1676C42.8495 38.6425 42.5047 37.5224 42.9917 36.61C45.8419 31.8215 46.3802 26.0158 44.3986 20.835C42.3891 15.5812 38.083 11.536 32.6651 9.61123C31.6756 9.21019 31.1832 8.14121 31.4947 7.20697C31.88 6.24716 32.9315 5.71769 33.9209 6.11873ZM19.0314 22.9274L14.9793 23.9177C15.0658 28.5153 16.7683 32.9665 19.8077 36.5414L23.5808 34.8214C24.2911 34.4928 25.2706 34.6493 25.845 35.2768L30.6255 40.5624C31.3017 41.2373 31.2954 42.3137 30.7984 42.9816L26.9507 47.785C26.4538 48.4529 25.4383 48.6394 24.6244 48.2602C10.6871 41.7662 4.46315 25.494 10.7532 11.9943C11.1205 11.206 12.0244 10.7277 12.8562 10.9354L19.0484 12.2615C19.8802 12.4692 20.6122 13.2899 20.5501 14.2204L20.4584 21.1936C20.4422 22.0256 19.7976 22.7447 19.0314 22.9274Z"
+                    fill="#a855f7"
+                  />
+                </svg>
+                <p class="text-xs text-lightPurple">+88 02 871116</p>
+              </div>
+              <div class="text-xs text-lightPurple space-y-2">
+                <div class="flex flex-row space-x-2">
+                  <svg
+                    class="w-4 h-4"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 18 18"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1.6875 2.5H16.3125C17.2266 2.5 18 3.27344 18 4.1875C18 4.75 17.7188 5.24219 17.2969 5.55859L9.66797 11.2891C9.24609 11.6055 8.71875 11.6055 8.29688 11.2891L0.667969 5.55859C0.246094 5.24219 0 4.75 0 4.1875C0 3.27344 0.738281 2.5 1.6875 2.5ZM0 6.4375L7.62891 12.2031C8.4375 12.8008 9.52734 12.8008 10.3359 12.2031L18 6.4375V13.75C18 15.0156 16.9805 16 15.75 16H2.25C0.984375 16 0 15.0156 0 13.75V6.4375Z"
+                      fill="#a855f7"
+                    />
+                  </svg>
+                  <p>solutions@cloudly.io</p>
+                </div>
+                <div class="flex flex-row space-x-2">
+                  <svg
+                    class="w-4 h-4 text-purple-500 dark:text-white"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M11.906 1.994a8.002 8.002 0 0 1 8.09 8.421 7.996 7.996 0 0 1-1.297 3.957.996.996 0 0 1-.133.204l-.108.129c-.178.243-.37.477-.573.699l-5.112 6.224a1 1 0 0 1-1.545 0L5.982 15.26l-.002-.002a18.146 18.146 0 0 1-.309-.38l-.133-.163a.999.999 0 0 1-.13-.202 7.995 7.995 0 0 1 6.498-12.518ZM15 9.997a3 3 0 1 1-5.999 0 3 3 0 0 1 5.999 0Z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                  <p class="text-left">
+                    House #429(2nd Floor). <br />Road#30 <br />Dhaka, Bangladesh
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- span4 -->
+          </div>
+          <!-- sec2 -->
+        </div>
+      </div>
+      <div
+        class="bottom-0 text-center text-gray-300 text-xs py-2 font-medium bg-[#0c0815] relative"
+      >
+        All right reserved
+      </div>
+    </footer>
+          <!-- footer -->
     </main>
     <script type="module" src="/src/main.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const slider = document.querySelector('.slider-container');
-            let isDragging = false,
-                startPos = 0,
-                currentTranslate = 0,
-                prevTranslate = 0,
-                animationID = 0,
-                currentIndex = 0;
+      document.addEventListener("DOMContentLoaded", function () {
+        const slider = document.querySelector(".slider-container");
+        let isDragging = false,
+          startPos = 0,
+          currentTranslate = 0,
+          prevTranslate = 0,
+          animationID = 0,
+          currentIndex = 0;
 
-            slider.addEventListener('mousedown', touchStart);
-            slider.addEventListener('mouseup', touchEnd);
-            slider.addEventListener('mouseleave', touchEnd);
-            slider.addEventListener('mousemove', touchMove);
+        slider.addEventListener("mousedown", touchStart);
+        slider.addEventListener("mouseup", touchEnd);
+        slider.addEventListener("mouseleave", touchEnd);
+        slider.addEventListener("mousemove", touchMove);
 
-            slider.addEventListener('touchstart', touchStart);
-            slider.addEventListener('touchend', touchEnd);
-            slider.addEventListener('touchmove', touchMove);
+        slider.addEventListener("touchstart", touchStart);
+        slider.addEventListener("touchend", touchEnd);
+        slider.addEventListener("touchmove", touchMove);
 
-            function touchStart(event) {
-                isDragging = true;
-                startPos = getPositionX(event);
-                animationID = requestAnimationFrame(animation);
-                slider.classList.add('grabbing');
-            }
+        function touchStart(event) {
+          isDragging = true;
+          startPos = getPositionX(event);
+          animationID = requestAnimationFrame(animation);
+          slider.classList.add("grabbing");
+        }
 
-            function touchEnd() {
-                isDragging = false;
-                cancelAnimationFrame(animationID);
-                const movedBy = currentTranslate - prevTranslate;
+        function touchEnd() {
+          isDragging = false;
+          cancelAnimationFrame(animationID);
+          const movedBy = currentTranslate - prevTranslate;
 
-                if (movedBy < -100 && currentIndex < 2) currentIndex += 1;
-                if (movedBy > 100 && currentIndex > 0) currentIndex -= 1;
+          if (movedBy < -100 && currentIndex < 2) currentIndex += 1;
+          if (movedBy > 100 && currentIndex > 0) currentIndex -= 1;
 
-                setPositionByIndex();
-                slider.classList.remove('grabbing');
-            }
+          setPositionByIndex();
+          slider.classList.remove("grabbing");
+        }
 
-            function touchMove(event) {
-                if (isDragging) {
-                    const currentPosition = getPositionX(event);
-                    currentTranslate = prevTranslate + currentPosition - startPos;
-                }
-            }
+        function touchMove(event) {
+          if (isDragging) {
+            const currentPosition = getPositionX(event);
+            currentTranslate = prevTranslate + currentPosition - startPos;
+          }
+        }
 
-            function getPositionX(event) {
-                return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
-            }
+        function getPositionX(event) {
+          return event.type.includes("mouse")
+            ? event.pageX
+            : event.touches[0].clientX;
+        }
 
-            function animation() {
-                setSliderPosition();
-                if (isDragging) requestAnimationFrame(animation);
-            }
+        function animation() {
+          setSliderPosition();
+          if (isDragging) requestAnimationFrame(animation);
+        }
 
-            function setSliderPosition() {
-                slider.style.transform = `translateX(${currentTranslate}px)`;
-            }
+        function setSliderPosition() {
+          slider.style.transform = `translateX(${currentTranslate}px)`;
+        }
 
-            function setPositionByIndex() {
-                currentTranslate = currentIndex * -window.innerWidth / 3; // Adjust for 3 visible slides
-                prevTranslate = currentTranslate;
-                setSliderPosition();
-            }
-        });
+        function setPositionByIndex() {
+          currentTranslate = (currentIndex * -window.innerWidth) / 3; // Adjust for 3 visible slides
+          prevTranslate = currentTranslate;
+          setSliderPosition();
+        }
+      });
     </script>
-</body>
+  </body>
 </html>
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML & Tailwind CSS Starter Pack</title>
-
-    <link rel="stylesheet" href="./main.css">
-</head>
-
-<body>
-    <main class="">
-        <div id="header"></div>
-        <div id="hero"></div>
-        <div id="about" ></div>
-        <div id="services"></div>
-        <div id="footer"></div>
-    </main>
-    <script type="module" src="/src/main.js"></script>
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-</body>
-
-</html> -->
