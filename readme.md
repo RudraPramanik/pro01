@@ -1,4 +1,8 @@
-
+used Technology
+HTML5,
+css3,
+vite:4.0.4,
+tailwindCss:3.2.4
 To run:
 
 ```bash
